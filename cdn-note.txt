@@ -1,0 +1,72 @@
+
+（http://fonts.googleapis.com/css?）打开很慢解决方案
+https://blog.csdn.net/a6225301/article/details/41115323
+
+fonts.googleapis.com加载慢解决办法
+http://www.amznz.com/fonts-googleapis-com-load-slow/
+
+
+google fonts 国内使用解决方案
+https://segmentfault.com/a/1190000005008286
+=> 提供了下载到本地的方案
+
+
+Replace Google CDN
+https://github.com/justjavac/ReplaceGoogleCDN
+star 1.6K
+本来我使用的是 360 提供的。360网站卫士常用前端公共库CDN服务
+经网友提醒 360 的不支持 https，于是改成中科大的。
+作者提供了一个chrome插件
+但对我们release版无价值
+http://mirrors.ustc.edu.cn/
+
+
+国内有哪些靠谱的 Javascript 库 CDN可用？
+https://www.zhihu.com/question/20227463
+
+http://www.staticfile.org/
+七牛+掘金
+
+用别人的 CDN 都是不保险的，所以建议在 CDN 读取失败的时候从自己服务器提供：
+<script src="//http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery.min.js";
+document.body.appendChild(script);
+}
+</script>
+
+
+作者：顾轶灵
+链接：https://www.zhihu.com/question/20227463/answer/14403302
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+百度 http://developer.baidu.com/wiki/index.php?title=docs/cplat/libs
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+
+
+新浪云 http://lib.sinaapp.com/
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+
+
+又拍云储存 又拍云JS库加速服务
+http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.9.1.min.js
+
+
+作者：知乎用户
+链接：https://www.zhihu.com/question/20227463/answer/16713389
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+jsDelivr – Open Source CDN
+free, fast, and reliable
+https://www.jsdelivr.com/
+
+
+http://cdnjs.cloudflare.com
+优点：
+1、目录结构与googleaip一致，支持域名通配符替换
+2、支持https，这一点可以秒杀上面的一堆CDN了

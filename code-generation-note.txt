@@ -1,0 +1,169 @@
+cmd
+cd C:\Dev\lab\m19caimeiqi\openedu-cloud\openedu.html\openedu-anon
+
+-------------------------------------------------------
+
+# 如果不是vue cli3，应升级到vue cli 3
+npm uninstall -g vue-cli
+npm install -g @vue/cli
+
+-------------------------------------------------------
+
+vue create openedu-anon
+
+# create的时候全都用了default设置
+
+cd openedu-anon
+npm run serve
+
+App running at:
+  - Local:   http://localhost:8080/
+  - Network: http://192.168.121.131:8080/
+
+  Note that the development build is not optimized.
+  To create a production build, run npm run build.
+
+npm run build
+
+# installing vue-cli-plugin-vuetify
+vue add vuetify
+
+# Vuetify can also be installed using Vue UI, the new visual application for Vue CLI. 
+# Ensure that you have the latest version of Vue CLI installed, then from your terminal type:
+
+vue --version
+vue ui
+
+npm run build
+npm run serve
+
+# This will start the Vue User Interface and open a new windowin your browser. 
+# On the left side of your screen, click on Plugins. Once navigated, search for Vuetify in the input field.
+
+-------------------------------------------------------
+Nuxt install
+
+npm install @nuxtjs/vuetify -D
+
+Once installed, update your nuxt.config.js file to include the Vuetify module in the build.
+// nuxt.config.js
+{
+  buildModules: [
+    // Simple usage
+    '@nuxtjs/vuetify',
+
+    // With options
+    ['@nuxtjs/vuetify', { /* module options */ }]
+  ]
+}
+
+我未在项目文件夹中找到该文件
+故在src下面直接创建了一个nuxt.config.js
+
+-------------------------------------------------------
+More information on installing Nuxt can be found on the official documentation.
+Webpack install
+To install Vuetify into a Webpack project you need to add a few dependencies:
+$ yarn add vuetify
+// OR
+$ npm install vuetify
+
+$ yarn add sass sass-loader fibers deepmerge -D
+// OR
+$ npm install sass sass-loader fibers deepmerge -D
+
+Once installed, locate your webpack.config.js file and copy the snippet below into the rules array. If you have an existing sass rule configured, you may need to apply some or all of the changes below. If you are you looking to utilize the vuetify-loader for treeshaking, ensure that you are on version >=4 of Webpack. You can find more information on setting it up with webpack on the A-la-cartepage.
+// webpack.config.js
+
+module.exports = {
+  rules: [
+    {
+      test: /\.s(c|a)ss$/,
+      use: [
+        'vue-style-loader',
+        'css-loader',
+        {
+          loader: 'sass-loader',
+          // Requires sass-loader@^7.0.0
+          options: {
+            implementation: require('sass'),
+            fiber: require('fibers'),
+            indentedSyntax: true // optional
+          },
+          // Requires sass-loader@^8.0.0
+          options: {
+            implementation: require('sass'),
+            sassOptions: {
+              fiber: require('fibers'),
+              indentedSyntax: true // optional
+            },
+          },
+        },
+      ],
+    },
+  ],
+}
+
+
+我未在项目文件夹中找到该文件
+故在src下面直接创建了一个webpack.config.js
+
+
+Create a plugin file for Vuetify, src/plugins/vuetify.js with the below content:
+// src/plugins/vuetify.js
+
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
+
+const opts = {}
+
+export default new Vuetify(opts)
+
+注：该文件已经存在于生成的项目文件夹中，但略有不同，应该不重要，我未改。
+实际生成的版本是下面这个。
+
+
+If using vuetify-loader use the content below:
+// src/plugins/vuetify.js
+
+import Vue from 'vue'
+import Vuetify from 'vuetify/lib'
+
+Vue.use(Vuetify)
+
+const opts = {}
+
+export default new Vuetify(opts)
+
+
+Navigate to your main entry point where you instantiate your Vue instance and pass the Vuetify object in as an option.
+// src/main.js
+实际生成的from部分与下面不同，考虑到实际生成的模板应该无错，故我没有更改
+
+import Vue from 'vue'
+import vuetify from '@/plugins/vuetify' // path to vuetify export
+
+new Vue({
+  vuetify,
+}).$mount('#app')
+-------------------------------------------------------
+
+
+Font installation
+Vuetify uses Google's Roboto fontand Material Design Icons. The simplest way to install these are to include their CDN's in your main index.html.
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+
+
+注：不安装字体整个程序也能工作了
+npm run build
+npm run serve
+
+在浏览器中打开
+http://localhost:8080
+http://192.168.121.131:8080
+

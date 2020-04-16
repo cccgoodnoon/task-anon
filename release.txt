@@ -1,0 +1,2 @@
+2020.03.30
+- create 3 column layout for the anon project. The developer can update their requirement in the NavigationView, ContentView and ActionView in the components folder.
