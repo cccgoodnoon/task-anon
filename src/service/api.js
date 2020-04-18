@@ -41,10 +41,10 @@ export const oGet = (url, params) => {
 
 export default { 
     _get () {
-        return oGet('http://127.0.0.1:5000/api/admin/tasks');
+        return oGet('http://47.111.234.116:8080/api/admin/tasks');
     },
     _gets(params) {
-        return oGet('http://127.0.0.1:5000/api/admin/tasks/' + params)
+        return oGet('http://47.111.234.116:8080/api/admin/tasks/' + params)
     }, 
 }
 
