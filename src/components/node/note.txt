@@ -1,0 +1,26 @@
+与服务端node服务匹配
+
+AttachmentList.vue
+显示一个attachment的列表。如果数据中包含了downloadurl，则可以下载，否则就是不可下载，但其它数据（如文件名称）依然显示。
+
+AttachmentViewer.vue
+显示一个attachment的详情
+
+AttachmentEditor.vue
+无
+
+AttachmentUploader.vue
+附件上传控件
+
+
+----------------------------
+如下为备选名称
+node-list (NodeList): 显示node的列表
+node-editor (NodeEditor): node对象的编辑器，例如上传文件、正文编辑
+node-viewer (NodeViewer): node对象的查看器，只读，如果一个附件后台有返回url，则允许下载之，如果没有对应的url只有文件名，则只显示且不允许下载。
+
+node-attachment-list (NodeAttachmentList): 显示node附件的列表
+node-attachment-upload 上传附件
+
+
+注意：权限访问要求，对不应该看到的数据，服务端的接口就不应该返回。

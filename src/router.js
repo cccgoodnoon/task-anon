@@ -1,31 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ContentView from './components/ContentView.vue'
-import Detail from './components/Detail.vue'
+import TaskList from './components/task/TaskList.vue'
+import TaskViewer from './components/task/TaskViewer.vue'
 
 
 Vue.use(VueRouter);
 
-// export default new Router({
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'home',
-//       redirect:'/tasks'
-//       // component: ContentView
-//     },
-//     {
-//         path: '/tasks',
-//         name: 'tasks',
-//         component: ContentView
-//     },
-//     {
-      // path: '/tasks/detail:id',
-      // name: 'task_detail',
-      // component: Detail
-//     }
-//   ]
-// })
 
 const routes = [
   {
@@ -36,18 +16,17 @@ const routes = [
   {
       path: '/tasks',
       name: 'tasks',
-      component: ContentView
+      component: TaskList
   },
   {
       path: '/tasks/detail/:id',
       name: 'task_detail',
-      component: Detail
+      component: TaskViewer
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  // base: process.env.BASE_URL,
   base: '/openedu/anon/',
   routes
 })

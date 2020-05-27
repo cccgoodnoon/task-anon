@@ -167,3 +167,22 @@ npm run serve
 http://localhost:8080
 http://192.168.121.131:8080
 
+
+
+如果刚从git中check代码出来，此时尚没有各种依赖：
+npm uninstall -g vue-cli
+npm install -g @vue/cli
+vue add vuetify
+npm install vuetify
+npm install @nuxtjs/vuetify -D
+npm run build
+npm run serve
+
+如果刚从git中check代码出来，此时尚没有各种依赖：
+npm uninstall -g vue-cli
+npm install -g @vue/cli
+vue add vuetify
+npm install vuetify
+npm install @nuxtjs/vuetify -D
+npm run build
+npm run serve

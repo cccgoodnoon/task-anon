@@ -1,7 +1,10 @@
 import axios from 'axios'
 // import qs from 'qs'
+// import {HttpIoService} from httpioservice
+// import CONFIG_API_BASE_URL from "@conf/config.js"
 
-//延时设置
+
+// 延时设置
 axios.defaults.timeout = 5000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 axios.defaults.params = {}
@@ -25,6 +28,19 @@ axios.interceptors.response.use((res) => {
 })
 
 
+// nio = new HttpIoService(CONFIG_API_BASE_URL)
+// export default nio
+
+/*
+export const oGet = (url, params) => {
+    return nio.get(url, param, null)
+}
+*/
+
+
+// TODO: the following should not be used in the future because we have the class.
+// comment them pls
+
 //封装获取数据
 export const oGet = (url, params) => {
     return new Promise((resolve, reject) => {
@@ -40,10 +56,14 @@ export const oGet = (url, params) => {
 };
 
 export default { 
+//47.111.234.116:8080
+//127.0.0.1:5000
+    
     _get () {
-        return oGet('http://47.111.234.116:8080/api/admin/tasks');
+        return oGet('http://127.0.0.1:5000/api/admin/tasks');
     },
     _gets(params) {
-        return oGet('http://47.111.234.116:8080/api/admin/tasks/' + params)
+        return oGet('http://127.0.0.1:5000/api/admin/tasks/' + params)
     }, 
 }
+

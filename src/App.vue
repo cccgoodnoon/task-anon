@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-content class="d-flex align-center">
-      <!-- suggest use vcard according to vuetify document example --> 
       <v-row no-gutters >
         <v-col col=12 md=2>
           <v-card
@@ -37,10 +36,8 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
 import NavigationView from './components/NavigationView';
 import ActionView from './components/ActionView';
-// import ContentView from './components/ContentView';
 
 export default {
   name: 'App',
@@ -48,12 +45,10 @@ export default {
   components: {
     NavigationView,
     ActionView,
-    // ContentView,
-    // HelloWorld,
   },
 
   data: () => ({
-    //
+    
   }),
 };
 </script>

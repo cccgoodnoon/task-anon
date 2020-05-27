@@ -3,7 +3,7 @@
     <v-row class="text-center" style="background-color:rgb(42,41,53);height:900px;top:0px">     
       <v-col cols="12">
         <div class="head-logo">
-          <img src="../assets/head-logo.jpg" alt="head" style="height:75px">
+          <img src="../assets/head-logo.jpg" alt="head" style="height:95px">
         </div>
         <div class="name">cccgoodnoon</div>
         <div class="com">同济大学电信学院控制系</div>
@@ -23,7 +23,8 @@
 <script>
   export default {
     name: 'NavigationView',
-    data(){   
+    data(){ 
+      return{};
     },
     
   }
@@ -31,9 +32,9 @@
 
 <style>
   .head-logo{
-    height: 75px;
-    min-width: 75px;
-    width: 75px;
+    height: 95px;
+    min-width: 95px;
+    width: 95px;
     margin: 30px 30px 20px;
     align-items: center;
     border-radius: 50%;

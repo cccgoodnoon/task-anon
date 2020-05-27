@@ -1,8 +1,29 @@
 <template>
   <v-container class="action-container">
-    <v-row>      
+    <!-- <v-toolbar>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>通知和任务</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-view-module</v-icon>
+      </v-btn>
+    </v-toolbar> -->
+    <v-row> 
+      <v-col cols="12" class="login">
+        <div class="text-center">
+          <v-btn depressed large color="teal lighten-2" width="210" height="50" dark @click="jumpToLogin">用 户 登 录</v-btn>
+        </div>
+      </v-col>     
+
       <v-col cols="12">
-        <v-date-picker v-model="picker" width="215" color="teal lighten-2"></v-date-picker>
+        <v-date-picker v-model="picker" width="190" color="teal lighten-2"></v-date-picker>
       </v-col>
 
       <v-col cols="12" class="action">
@@ -63,10 +84,7 @@
       </v-col>
 
       <v-col cols="12" class="action-select">
-        <v-radio-group
-          :row="row"
-          :color="color"
-        >
+        <v-radio-group>
           <v-radio label="学生版"></v-radio>
           <v-radio label="教师版"></v-radio>
         </v-radio-group>
@@ -89,12 +107,20 @@
           message:"",
       };
     },
+    methods:{
+      jumpToLogin(){
+        window.location.href = "http://47.111.234.116/openedu/admin" 
+      }
+    }
   }
 </script>
 
 <style>
 .action-container{
   padding: 12px;
+}
+.login{
+  padding: 10px 0px 3px 0px;
 }
 .action{
   padding: 10px 12px 3px 18px;
