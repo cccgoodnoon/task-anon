@@ -23,12 +23,12 @@
               </div>
               <div class="content">
                 {{item.description|ellipsis}}
-                <v-btn
+                <!-- <v-btn
                   depressed
                   :to="{name:'task_detail',params:{id:item.id}}"
                   x-small
                   color="success"
-                >详情</v-btn>
+                >详情</v-btn> -->
               </div>
             </v-card>
           </v-hover>
