@@ -55,15 +55,40 @@ export const oGet = (url, params) => {
     })
 };
 
+export const oPost = (url, params) => {
+    return new Promise((resolve, reject) => {
+        axios.post(url, params)
+            .then(res => {
+                resolve(res.data)
+            }, err => {
+                reject(err)
+            }).catch(err => {
+                reject(err)
+            })
+    })
+};
+
 export default { 
 //47.111.234.116:8080
 //127.0.0.1:5000
     
     _get () {
-        return oGet('http://127.0.0.1:5000/api/admin/tasks');
+        return oGet('http://47.111.234.116:8080/api/anon/task/tasks');
     },
     _gets(params) {
-        return oGet('http://127.0.0.1:5000/api/admin/tasks/' + params)
+        return oGet('http://47.111.234.116:8080/api/anon/task/tasks/' + params)
     }, 
+    // //添加
+    // $addData(params) {
+    //     return oPost('http://47.111.234.116:8080/api/anon/task/tasks/' + params)
+    // }, 
+    //  //修改
+    //  $eidtData(params) {
+    //     return oPost('http://47.111.234.116:8080/api/anon/task/tasks/v/' + params)
+    // }, 
+    // //删除
+    // $deleteData(params) {
+    //     return oGet('http://47.111.234.116:8080/api/anon/task/tasks/' + params)
+    // }, 
 }
 
