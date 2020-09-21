@@ -116,7 +116,7 @@ import vm from '../service/vm.js'
     },
     methods:{
       jumpToLogin(){
-        window.location.href = "http://47.111.234.116/openedu/admin" 
+        window.location.href = "http://202.120.167.50/openedu/admin" 
       },
       toSearch(){
         console.log(this.message,22)
@@ -150,13 +150,16 @@ import vm from '../service/vm.js'
   padding: 10px 0px 3px 0px;
 }
 .action{
-  padding: 10px 12px 3px 18px;
+  padding: 0px 12px 0px 18px;
 }
 .action-search{
-  padding: 15px 12px 0px 18px;
+  padding: 0px 12px 0px 18px;
 }
 .action-select{
   padding: 0px 12px 0px 18px;
+}
+.login{
+  padding: 0px;
 }
 .v-application .teal.searchBtn{
   width: 89%;height: 40px!important;

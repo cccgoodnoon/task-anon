@@ -3,13 +3,14 @@
       <v-row>
         <v-col v-for="item in task" :key="item.id" cols="12" class="card-col">
           <v-hover v-slot:default="{ hover }" >
-            <v-card :elevation="hover ? 8 : 1" class="card">
+            <v-card :elevation="hover ? 3 : 0" class="card">
               <h2>
                 <router-link :to="{name:'task_detail',params:{id:item.id}}" style="color:#2a2935;text-decoration:none;">{{item.title}}</router-link>
               </h2>
+              <hr class="task_line">
               <div class="meta-box">
                 <span class="date">
-                  <i class="iconfont icon-rili"></i>
+                  <i class="iconfont icon-jieshushijian1"></i>
                   {{item.endtime}}
                 </span>
                 <span class="author">
@@ -34,11 +35,13 @@
           </v-hover>
         </v-col>
 
-        <v-col cols="8">
+        <v-col cols="10">
           <v-container class="max-width">
             <v-pagination
               v-model="page"
               class="my-4"
+              circle
+              color="teal lighten-2"
               :length="Math.ceil(total / 5)"
               @input="pageChange"
               :total-visible="total"
@@ -159,13 +162,17 @@
     margin-bottom: 10px;
     color: #757575;
   }
+  .taskcontent {
+    background: #eaf6f6;
+    height: 1020px;
+  }
   .taskcontent h2 {
-    margin-bottom:5px;
+    margin-bottom:1px;
     color: #2a2935;
   }
   .taskcontent a {
     color: #2a2935;
-    font-size: 24px;
+    font-size: 16px;
     text-decoration: none;
     font-weight: 500;
   }
@@ -182,9 +189,16 @@
   }
   .card{
     padding: 15px 30px 20px;
-    margin: 0px 8px;
+    margin: 0px 18px;
   }
   .card-col{
     padding: 6px 12px;
+  }
+  .task_line{
+    border-width: thin 0 0 0;
+    max-width: 100%;
+    height: 0px;
+    border-color:teal lighten-2;
+    margin-bottom: 12px;
   }
 </style>

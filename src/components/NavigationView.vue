@@ -1,6 +1,6 @@
 <template>
   <v-container class="col1">
-    <v-row class="text-center" style="background-color:rgb(42,41,53);height:900px;top:0px">     
+    <v-row class="text-center" style="background-color:rgb(42,41,53);height:100vh;top:0px;position:fixed">     
       <v-col cols="12">
         <div class="head-logo">
           <img src="../assets/head-logo.jpg" alt="head" style="height:95px">

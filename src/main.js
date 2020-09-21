@@ -5,6 +5,11 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
+router.afterEach(() => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+})
+
 new Vue({
   vuetify,
   router,

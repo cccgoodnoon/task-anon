@@ -73,11 +73,14 @@ export default {
 //127.0.0.1:5000
     
     _get () {
-        return oGet('http://47.111.234.116:8080/api/anon/task/tasks');
+        return oGet('http://202.120.167.50:8088/api/anon/task/tasks');
     },
     _gets(params) {
-        return oGet('http://47.111.234.116:8080/api/anon/task/tasks/' + params)
+        return oGet('http://202.120.167.50:8088/api/anon/task/tasks/' + params)
     }, 
+    _getFileName(uuid){
+        return oGet('http://202.120.167.50:8088/api/u/fdb/task/getFilename/'+uuid);
+    },
     // //添加
     // $addData(params) {
     //     return oPost('http://47.111.234.116:8080/api/anon/task/tasks/' + params)
