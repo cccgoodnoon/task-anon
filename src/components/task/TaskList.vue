@@ -9,15 +9,15 @@
               </h2>
               <hr class="task_line">
               <div class="meta-box">
-                <span class="date">
+                <span class="span1">
                   <i class="iconfont icon-jieshushijian1"></i>
                   {{item.endtime}}
                 </span>
-                <span class="author">
+                <span class="span1">
                   <i class="iconfont icon-wode"></i>
                   {{item.performer}}
                 </span>
-                <span class="state">
+                <span class="span1">
                   <i class="iconfont icon-icon-p_mrpjinduzhuizong"></i>
                   {{item.state|getStateName}}
                 </span>
@@ -87,24 +87,34 @@
     mounted(){
       this.getData("",{});
       vm.$on("setData",(data) => {
-        console.log(data,111);
+        // console.log(data,111);
         this.getData(1,data);
         this.searchData = data;
       });
-      console.log(this.compareTime("2020-08-01","2020-08-23"),1)
-      console.log(this.compareTime("2020-08-01","2020-07-23"),2)
-      console.log(this.compareTime("2020-08-01","2020-08-01"),3)
+    },
+    created(){
+      if (!parseInt(sessionStorage.getItem('page'))) {
+        this.page = 1
+      } else {
+        this.page = parseInt(sessionStorage.getItem('page'))
+        // console.log(this.page);
+      }
+    },
+    updated() {
+    　　sessionStorage.setItem('page', this.page)
+        // console.log(this.page);
     },
     methods:{
       pageChange(p){
-        console.log(p)
+        // console.log(p)
+        // console.log(this.page)
         this.task=this.totalData.slice((p-1)*5,p*5);
       },
       getData(flag,params){
         let self = this
-        api._get().then(res => {
+        var level = 0
+        api._get(level).then(res => {
             self.task = res;
-            
             if(flag == 1){
               if(params.message){
                 var newTask = [];
@@ -119,26 +129,29 @@
               if(params.startDate != "" && params.endDate != ""){
                 var newArr = [];
                 self.task.forEach(d => {
-                  //var xiao = self.compareTime(d.endtime,params.endDate);
-                  //var da = self.compareTime(d.endtime,params.startDate);
                   var com = self.compareTime(d.endtime,params.startDate, params.endData);
                   console.log(com);
                   if(com){
-                    console.log(d,899)
+                    // console.log(d,899)
                     newArr.push(d);
                   }
                 });
                  self.task = newArr;
               }
-             
             }
             self.total = self.task.length;
             self.totalData = self.task;
-            self.task=self.task.slice((1-1)*5,1*5);
-            console.log(self.task,8888);
+            this.task=this.totalData.slice((this.page-1)*5,this.page*5);
+            // self.task=self.task.slice((1-1)*5,1*5);
         },err => {
             console.log(err);
         })
+      },
+      beforeRouteLeave: (to, from, next) => {
+        if (from.path !== '/tasks/detail') {
+            sessionStorage.removeItem('page')
+        }
+        next()
       },
       compareTime(curd,date1, date2){
         console.log(curd,date1,date2);
@@ -164,7 +177,7 @@
   }
   .taskcontent {
     background: #eaf6f6;
-    height: 1020px;
+    min-height: 1100px;
   }
   .taskcontent h2 {
     margin-bottom:1px;
@@ -176,7 +189,7 @@
     text-decoration: none;
     font-weight: 500;
   }
-  span {
+  .span1 {
     margin-right: 12px;
   }
   .iconfont {

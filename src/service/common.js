@@ -72,26 +72,14 @@ export default {
 //47.111.234.116:8080
 //127.0.0.1:5000
     
-    _get () {
-        return oGet('http://202.120.167.50:8088/api/anon/task/tasks');
+    _get (params) {
+        return oGet('http://127.0.0.1:5000/api/anon/task/tasks/byauth/' + params);
     },
     _gets(params) {
-        return oGet('http://202.120.167.50:8088/api/anon/task/tasks/' + params)
+        return oGet('http://127.0.0.1:5000/api/anon/task/tasks/' + params)
     }, 
     _getFileName(uuid){
-        return oGet('http://202.120.167.50:8088/api/u/fdb/task/getFilename/'+uuid);
+        return oGet('http://127.0.0.1:5000/api/u/fdb/task/getFilename/'+uuid);
     },
-    // //添加
-    // $addData(params) {
-    //     return oPost('http://47.111.234.116:8080/api/anon/task/tasks/' + params)
-    // }, 
-    //  //修改
-    //  $eidtData(params) {
-    //     return oPost('http://47.111.234.116:8080/api/anon/task/tasks/v/' + params)
-    // }, 
-    // //删除
-    // $deleteData(params) {
-    //     return oGet('http://47.111.234.116:8080/api/anon/task/tasks/' + params)
-    // }, 
 }
 

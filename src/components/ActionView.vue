@@ -89,12 +89,12 @@
           <v-btn depressed large color="teal  resetBtn" height="50" dark @click="toClear">重置</v-btn>
         </div>
       </v-col>     
-      <v-col cols="12" class="action-select">
+      <!-- <v-col cols="12" class="action-select">
         <v-radio-group>
           <v-radio label="学生版"></v-radio>
           <v-radio label="教师版"></v-radio>
         </v-radio-group>
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -145,6 +145,7 @@ import vm from '../service/vm.js'
 <style>
 .action-container{
   padding: 12px;
+  min-height: 1000px;
 }
 .login{
   padding: 10px 0px 3px 0px;

@@ -1,62 +1,6 @@
 <template>
   <v-container>
     <div class="article"> 
-    <!-- <v-row style="height:875px;"> -->
-      <!-- <v-col style="paddingTop:0"> -->
-        <!-- <v-card class="detail-card">
-          <v-card-text>
-            <div class="markdown-body">
-              <h3>任务编码</h3>
-              <span>{{task.id}}</span>
-            </div>
-          </v-card-text>
-          <v-divider/>
-          <v-card-text>
-            <div class="markdown-body">
-              <h3>负责人</h3>
-                <span> {{task.performer}}</span>
-            </div>
-          </v-card-text>
-          <v-divider/>
-          <v-card-text>
-            <div class="markdown-body">
-              <h3>简介</h3>
-              <span>{{task.title}}</span>
-            </div>
-          </v-card-text>
-          <v-divider/>
-          <v-card-text>
-            <div class="markdown-body">
-              <h3>任务内容</h3>
-              <span>{{task.description}}</span>
-            </div>
-          </v-card-text>
-          <v-divider/>
-          <v-card-text>
-            <div class="markdown-body">
-              <h3>开始日期</h3>
-                <span> {{task.begintime}}</span>
-            </div>
-          </v-card-text>
-          <v-divider/>
-          <v-card-text>
-            <div class="markdown-body">
-              <h3>截止日期</h3>
-                <span> {{task.endtime}}</span>
-            </div>
-          </v-card-text>
-          <v-divider/>
-          <v-card-text>
-            <div class="markdown-body">
-              <h3>完成状态</h3>
-                <span> {{task.state|getStateName}}</span>
-            </div>
-          </v-card-text>
-          <v-card-text>
-            <div class="content" v-html="task.description"></div>
-          </v-card-text>
-          <v-divider/>
-        </v-card> -->
       <h1 class="article-title">{{task.title}}</h1>
       <div class="article-meta">
         <span class="date">
@@ -77,21 +21,26 @@
         </span>
       </div>
       <div class="content-detail" v-html="task.description"></div>
+      <div class="backbutton">
+        <v-btn depressed @click="backToList">返回列表</v-btn>
+      </div>
       <div class="meta-split" v-if="isHaveAttachment"></div>
       <div class="attach">
-        <div class="file-list1"  v-if="isHaveAttachment">附件列表</div>
-        <div :span="8" v-for="item in this.file_list"  class="file-list">
-          <div class="avatar-uploader">
-            <img width="32" height="32" :src="require('../../assets/file/'+matchType(item.filename)+'.png')">
-            <p style="margin-bottom:6px">{{item.filename}}</p>
-          </div>
-          <div class="mask">
-            <a @click="previewer(item.uuid)" target="_blank" title="点击预览" style="color:black">
-              <i class="iconfont icon-fangda"></i>
-            </a>
-            <a @click="singeDownloadFile(item.uuid)" title="点击下载" style="color:black">
-              <i class="iconfont icon-xiazai"></i>
-            </a>
+        <div class="file-title"  v-if="isHaveAttachment">附件列表</div>
+        <div class="file-list-total">
+          <div :span="8" v-for="(item,index) in this.file_list" :key=index class="file-list">
+            <div class="avatar-uploader">
+              <img width="32" height="32" :src="require('../../assets/file/'+matchType(item.filename)+'.png')">
+              <p style="margin-bottom:6px;text-align: left;width:100px">{{item.filename}}</p>
+            </div>
+            <div class="mask">
+              <a @click="previewer(item.uuid)" target="_blank" title="点击预览" style="color:black">
+                <i class="iconfont icon-fangda"></i>
+              </a>
+              <a @click="singeDownloadFile(item.uuid)" title="点击下载" style="color:black">
+                <i class="iconfont icon-xiazai"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -134,16 +83,16 @@ import api from '../../service/common.js'
     },
     methods:{
       singeDownloadFile(uuid) {
-        downloadFile('http://202.120.167.50:8088/api/u/fdb/task/' + uuid);
+        downloadFile('http://127.0.0.1:5000/api/u/fdb/task/' + uuid);
       },
       previewer(uuid) {
-        window.open("http://202.120.167.50:8088/api/u/fdb/task/content/" + uuid, '_blank');
+        window.open("http://127.0.0.1:5000/api/u/fdb/task/content/" + uuid, '_blank');
       },
       getData(){
           let self = this
           api._gets(self.$route.params.id).then(res => {
             self.task = res;
-            console.log(res,8888);
+            // console.log(res,8888);
             if (self.task.nodeid != null && self.task.nodeid != 'None') {
               this.getFileName();
             }
@@ -158,8 +107,16 @@ import api from '../../service/common.js'
           if (this.file_list.length){
             this.isHaveAttachment = true
           }
-          
         })
+      },
+      backToList(){
+        this.$router.push("/tasks");
+      },
+      beforeRouteLeave: (to, from, next) => {
+        if (to.path !== '/tasks') {
+          sessionStorage.removeItem('page')
+        }
+        next()
       },
       matchType(filename) {
       // console.log(this.filename);
@@ -283,34 +240,55 @@ h3{
   min-height: 1020px;
 }
 .meta-split{
-    margin: 30px 40px;
+    margin: 100px 40px 30px 40px;
     height: 1px;
     border: none;
     background-color: #ddd;
     background-image: repeating-linear-gradient(-45deg,#fff,#fff 4px,transparent 0,transparent 8px);
 }
-.file-list {
-  display: inline-block;
-  padding: 5px 10px;
-  vertical-align: top;
-  font-size: 14px;
+.attach {
+  padding-left:30px;
 }
-.file-list1 {
+.file-title {
   display: inline-block;
   padding: 5px 15px 5px 50px;
   vertical-align: top;
   font-size: 14px;
+  vertical-align: top;
 }
+.file-list-total{
+  display: inline-block;
+  padding: 0px;
+  vertical-align: top;
+  width: 700px;
+}
+.file-list {
+  display: inline-block;
+  padding: 5px 15px 30px 10px;
+  vertical-align: top;
+  font-size: 14px;
+  white-space:break-word;
+}
+
 p {
   /* padding: 5px 0px 0px 60px; */
   font-family: sans-serif;
   font-size: 12px;
   text-align: center;
 }
-.mask{
-  text-align: center;
+.avatar-uploader{
+  text-align: left;
 }
-.attach {
-  padding: 0px 0px 50px 0px;
+.mask{
+  text-align: left;
+}
+
+.backbutton{
+  margin: 0 40px;
+  padding: 0;
+  float: right;
+}
+.file-tr{
+  margin-bottom: 20px;
 }
 </style>
