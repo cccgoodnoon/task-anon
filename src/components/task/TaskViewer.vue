@@ -83,10 +83,10 @@ import api from '../../service/common.js'
     },
     methods:{
       singeDownloadFile(uuid) {
-        downloadFile('http://127.0.0.1:5000/api/u/fdb/task/' + uuid);
+        downloadFile('http://202.120.167.50:8088/api/u/fdb/task/' + uuid);
       },
       previewer(uuid) {
-        window.open("http://127.0.0.1:5000/api/u/fdb/task/content/" + uuid, '_blank');
+        window.open("http://202.120.167.50:8088/api/u/fdb/task/content/" + uuid, '_blank');
       },
       getData(){
           let self = this
